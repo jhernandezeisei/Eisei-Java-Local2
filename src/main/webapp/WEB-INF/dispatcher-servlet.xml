@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- declares support for general annotations such as @Required, @Autowired, @PostConstruct -->
+    <context:annotation-config />
+    
+    <!-- esta configuracion hace que inicie dentro del paquete controller donde esta nuestra clase controlador -->
+    <context:component-scan base-package="com.eisei.eiseilocal" />
+
+    <!-- A traves de esta configuracion se puede colocar dentro de una carpeta llamada resources en Web Pages todo lo que tenga que ver con js, css e imagenes -->
+    <mvc:resources mapping="/assets/**" location="/assets/" />
+    
+    <!--  declares explicit support for annotation-driven MVC controllers (i.e. @RequestMapping, @Controller, although support for those is the default behaviour), 
+    as well as adding support for declarative validation via @Valid and message body marshalling with @RequestBody/ResponseBody-->
+    <mvc:annotation-driven />
+    
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+</beans>
