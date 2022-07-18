@@ -4,5 +4,5 @@ import com.eisei.eiseilocal.model.Usuarios;
 
 
 public interface LoginDao {
-    Usuarios login(Usuarios obj);
+    public Usuarios login(Usuarios obj);
 }
