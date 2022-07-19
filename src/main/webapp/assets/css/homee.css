@@ -1,0 +1,17 @@
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+    #fondo {
+    padding-top: 100px;
+    width: 1880px;
+    height: 1000px;
+    background-image: url(../img/inicioTel.png) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-position-x: center;
+    background-position-y: center;
+}

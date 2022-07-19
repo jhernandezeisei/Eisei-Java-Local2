@@ -11,7 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+@Component
+@Repository
 public class LoginDaoImpl implements LoginDao {
 
     Usuarios user = new Usuarios();
@@ -30,13 +34,13 @@ public class LoginDaoImpl implements LoginDao {
             ps = con.prepareCall(sql);
             System.out.println(sql);
             ps.setString(1, obj.getUsuario());
-            ps.setString(2, obj.getContraseña());
+            ps.setString(2, obj.getContrasena());
             rs = ps.executeQuery();
 
 
             while (rs.next()) {
                 user.setUsuario(rs.getString(1));
-                user.setContraseña(rs.getString(2));
+                user.setContrasena(rs.getString(2));
             }
             ps.close();
             rs.close();
