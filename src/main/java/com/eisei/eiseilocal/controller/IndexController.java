@@ -2,7 +2,9 @@ package com.eisei.eiseilocal.controller;
 
 import com.eisei.eiseilocal.dao.LoginDao;
 import com.eisei.eiseilocal.daoImpl.LoginDaoImpl;
+import com.eisei.eiseilocal.model.ResponseUsuariosModel;
 import com.eisei.eiseilocal.model.Usuarios;
+import com.eisei.eiseilocal.service.LoginService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,15 +13,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@ComponentScan(basePackages = {"com.eisei.eiseilocal"})
 public class IndexController extends HttpServlet {
 
+    @Autowired
+    private LoginService loginService;
     Usuarios user = new Usuarios();
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -28,45 +36,32 @@ public class IndexController extends HttpServlet {
         return indexModel;
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-        doPost(request, response);
-    }
-
     @RequestMapping(value = "/Userlogin", method = RequestMethod.POST)
-    protected void doPost(
+    @ResponseBody
+    protected ResponseUsuariosModel doPost(
             @RequestParam(value = "Usuario", required = false) String usuario,
             @RequestParam(value = "Contrasena", required = false) String contraseña,
             HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        boolean valido = false;
+
+        ResponseUsuariosModel objectResponse = new ResponseUsuariosModel();
+
         user.setUsuario(usuario);
-        user.setContraseña(contraseña);
+        user.setContrasena(contraseña);
 
-        LoginDao ld = new LoginDaoImpl();
-        Usuarios u = ld.login(user);
+        Usuarios u = loginService.login(user);
 
-        if(u.getUsuario() != null) {
-            out.write("Ingreso");
-            valido = true;
-            //request.getRequestDispatcher("usuarios.jsp").forward(request, response);
+        if (u.getUsuario() != null) {
+            request.getSession().setAttribute("nom", usuario);
+            objectResponse.setMessage("Ingreso");
+            objectResponse.setObject(u);
+            objectResponse.setFailure(0);
+            return objectResponse;
         } else {
-            out.write("Error");
-            valido = false;
-            //response.sendRedirect("index.jsp");
+            objectResponse.setFailure(1);
+            objectResponse.setMessage("error: credenciales incorrectas");
+            return objectResponse;
         }
 
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 }
