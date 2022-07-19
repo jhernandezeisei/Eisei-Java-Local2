@@ -25,12 +25,13 @@ function sendRequestPOSTloggin(fobj, actionURL, user) {
         data: fobj,
         async: true,
         success: function (data) {
-            if (data==='Ingreso') {
-                    window.open("usuarios.jsp", "_self");
+            console.log(data);
+            if (data.failure===0) {  
+                    //window.open("usuarios", "_self");
+                    window.open("../EiseiLocal/panel", "_self");
                 } else {
-                var mensaje = "Usuario incorrecto";
                     //alerta de error  
-                showPopupMessageGeneric("Aviso", mensaje);
+                showPopupMessageGeneric("Aviso", data.message);
                 }
         },
         error: function (jqxhr, settings, thrownError) {

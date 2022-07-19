@@ -7,13 +7,13 @@ package com.eisei.eiseilocal.model;
 public class Usuarios {
     int id;
     String usuario;
-    String contraseña;
+    String contrasena;
     String nombre;
     String apellidos;
     String genero;
     String fechaNacimiento;
     String correo;
-    byte estado;
+    int estado;
     String usuarioCreacion;
     String usuarioModificacion;
     String fechaCreacion;
@@ -22,10 +22,10 @@ public class Usuarios {
     public Usuarios() {
     }
 
-    public Usuarios(int id, String usuario, String contraseña, String nombre, String apellidos, String genero, String fechaNacimiento, String correo, byte estado, String usuarioCreacion, String usuarioModificacion, String fechaCreacion, String fechaModificacion) {
+    public Usuarios(int id, String usuario, String contrasena, String nombre, String apellidos, String genero, String fechaNacimiento, String correo, int estado, String usuarioCreacion, String usuarioModificacion, String fechaCreacion, String fechaModificacion) {
         this.id = id;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.genero = genero;
@@ -54,12 +54,12 @@ public class Usuarios {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getNombre() {
@@ -102,11 +102,11 @@ public class Usuarios {
         this.correo = correo;
     }
 
-    public byte getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(byte estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 

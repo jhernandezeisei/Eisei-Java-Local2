@@ -77,6 +77,23 @@
     background: #fa851e
 }
 
+.btn-blue {
+    background: #001141;
+    color: #fff;
+    font-weight: 700
+}
+
+.btn-green-light {
+    background: #034e52;
+    color: #fff;
+    font-weight: 700
+}
+
+.btn-green-light:hover {
+    color: #fff;
+    background: #00a148
+}
+
 .btn-orange:hover {
     color: #fff;
     background: #f9b014
@@ -203,11 +220,13 @@
 }
 
 .title-popup {
-    color: #202c52;
-    font-weight: 600;
-    padding-bottom: 0;
-    font-family: robotoblack;
-    line-height: 20px
+    font-family: 'robotomedium';
+    src: url('roboto-medium-webfont.woff2') format('woff2'),
+         url('roboto-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+
 }
 
 .title-dos {
@@ -216,7 +235,7 @@
 
 .message-popup {
     color: #4f4e4c;
-    font-weight: 600
+    font-weight: 300
 }
 
 .icon-popup {
