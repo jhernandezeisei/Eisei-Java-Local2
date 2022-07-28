@@ -1,8 +1,8 @@
 package com.eisei.eiseilocal.dao;
 
-import com.eisei.eiseilocal.model.Usuarios;
+import com.eisei.eiseilocal.model.Usuario;
 
 
 public interface LoginDao {
-    public Usuarios login(Usuarios obj);
+    public Usuario login(Usuario obj);
 }
