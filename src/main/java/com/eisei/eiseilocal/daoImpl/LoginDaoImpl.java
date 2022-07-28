@@ -1,9 +1,8 @@
 package com.eisei.eiseilocal.daoImpl;
 
-
 import com.eisei.eiseilocal.config.Conexion;
 import com.eisei.eiseilocal.dao.LoginDao;
-import com.eisei.eiseilocal.model.Usuarios;
+import com.eisei.eiseilocal.model.Usuario;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,14 +17,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class LoginDaoImpl implements LoginDao {
 
-    Usuarios user = new Usuarios();
+    Usuario user = new Usuario();
     String resp = null;
     Connection con;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
     @Override
-    public Usuarios login(Usuarios obj) {
+    public Usuario login(Usuario obj) {
         try {
             Conexion c = new Conexion();
             con = c.getConnection();
@@ -37,10 +36,10 @@ public class LoginDaoImpl implements LoginDao {
             ps.setString(2, obj.getContrasena());
             rs = ps.executeQuery();
 
-
             while (rs.next()) {
                 user.setUsuario(rs.getString(1));
                 user.setContrasena(rs.getString(2));
+                user.setRol(rs.getInt(3));
             }
             ps.close();
             rs.close();
