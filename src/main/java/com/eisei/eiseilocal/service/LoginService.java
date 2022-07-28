@@ -4,12 +4,12 @@
  */
 package com.eisei.eiseilocal.service;
 
-import com.eisei.eiseilocal.model.Usuarios;
+import com.eisei.eiseilocal.model.Usuario;
 
 /**
  *
  * @author jose.garcia
  */
 public interface LoginService {
-    public Usuarios login(Usuarios obj);
+    public Usuario login(Usuario obj);
 }

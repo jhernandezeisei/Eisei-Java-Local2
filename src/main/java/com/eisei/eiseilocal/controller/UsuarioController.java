@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.eisei.eiseilocal.controller;
 
-import com.eisei.eiseilocal.dao.UsuarioDao;
-import com.eisei.eiseilocal.daoImpl.UsuarioDaoImpl;
-import com.eisei.eiseilocal.model.Usuarios;
-import com.eisei.eiseilocal.model.UsuariosResponseModel;
-import com.eisei.eiseilocal.service.LoginService;
+import com.eisei.eiseilocal.model.TUsuarioResponseModel;
+import com.eisei.eiseilocal.model.Usuario;
+import com.eisei.eiseilocal.model.UsuarioResponseModel;
 import com.eisei.eiseilocal.service.UsuarioService;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,17 +31,17 @@ public class UsuarioController extends HttpServlet {
 
     @Autowired
     private UsuarioService uService;
-    Usuarios user = new Usuarios();
+    Usuario user = new Usuario();
 
     @RequestMapping(value = "/usuarios", method = RequestMethod.GET)
-    public ModelAndView panel() throws Exception {
+    public ModelAndView usuarios() throws Exception {
         ModelAndView indexModel = new ModelAndView("usuarios", "command", new Object());
         return indexModel;
     }
 
     @RequestMapping(value = "/CrearUsuario", method = RequestMethod.POST)
     @ResponseBody
-    protected UsuariosResponseModel doPost(
+    protected UsuarioResponseModel CrearUsuario(
             @RequestParam(value = "Usuario", required = true) String usuario,
             @RequestParam(value = "Contrasena", required = true) String contrasena,
             @RequestParam(value = "Nombre", required = true) String nombre,
@@ -59,19 +54,21 @@ public class UsuarioController extends HttpServlet {
             @RequestParam(value = "UsuarioModificacion", required = true) String usuarioModi,
             @RequestParam(value = "FechaCreacion", required = true) String fechaCrea,
             @RequestParam(value = "FechaModificacion", required = true) String fechaModi,
+            @RequestParam(value = "IdRol", required = true) int rol,
             HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        UsuariosResponseModel resp = new UsuariosResponseModel();
+        UsuarioResponseModel resp = new UsuarioResponseModel();
         user.setUsuario(usuario);
-        Usuarios x = uService.usuarioConsulta(user);
+        Usuario x = uService.usuarioConsulta(user);
+        String usuarioObjx = x.getUsuario();
 
         if (x.getUsuario().equals("1")) {
             resp.setMessage("Existe");
             resp.setObject(x);
             return resp;
         } else if (x.getUsuario().equals("0")) {
-            UsuariosResponseModel respObj = new UsuariosResponseModel();
+            UsuarioResponseModel respObj = new UsuarioResponseModel();
             user.setUsuario(usuario);
             user.setContrasena(contrasena);
             user.setNombre(nombre);
@@ -84,7 +81,9 @@ public class UsuarioController extends HttpServlet {
             user.setUsuarioModificacion(usuarioModi);
             user.setFechaCreacion(fechaCrea);
             user.setFechaModificacion(fechaModi);
-            Usuarios n = uService.usuarioInsertar(user);
+            user.setRol(rol);
+            Usuario n = uService.usuarioInsertar(user);
+            String usuarioObj = n.getUsuario();
 
             if (n.getUsuario() != null) {
                 respObj.setMessage("Registro");
@@ -94,8 +93,54 @@ public class UsuarioController extends HttpServlet {
                 return respObj;
             }
         }
-        //return uService.crearUsuario(usuario, contraseña, nombre, apellidos, genero, fechaNac, correo, estado, usuarioCrea, usuarioModi, fechaCrea, fechaModi);        
         return resp;
+
+    }
+
+    @RequestMapping(value = "/TUsuarios", method = RequestMethod.GET)
+    @ResponseBody
+    protected TUsuarioResponseModel TUsuarios()
+            throws ServletException, IOException {
+        List<Usuario> lista = new ArrayList<>();
+        TUsuarioResponseModel objectResponse = new TUsuarioResponseModel();
+        lista = uService.LUsuarios();
+
+        if (lista != null) {
+            objectResponse.setMessage("Ingreso");
+            objectResponse.setObject(lista);
+            objectResponse.setFailure(0);
+            return objectResponse;
+        } else {
+            objectResponse.setFailure(1);
+            objectResponse.setMessage("error: credenciales incorrectas");
+            return objectResponse;
+        }
+
+    }
+
+    @RequestMapping(value = "/EliminarUsuario", method = RequestMethod.POST)
+    @ResponseBody
+    protected TUsuarioResponseModel EliminarUsuario(
+            @RequestParam(value = "IdUsuario", required = false) int id,
+            HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        Usuario eUser = new Usuario();
+        TUsuarioResponseModel objectResponse = new TUsuarioResponseModel();
+
+        eUser.setId(id);
+        Usuario u = uService.usuarioEliminar(eUser);
+
+        if (u != null) {
+            objectResponse.setMessage("Ingreso");
+            objectResponse.setObj(u);
+            objectResponse.setFailure(0);
+            return objectResponse;
+        } else {
+            objectResponse.setFailure(1);
+            objectResponse.setMessage("error");
+            return objectResponse;
+        }
 
     }
 }

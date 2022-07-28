@@ -4,7 +4,8 @@ package com.eisei.eiseilocal.model;
  *
  * @author karla.calderon
  */
-public class Usuarios {
+public class Usuario {
+
     int id;
     String usuario;
     String contrasena;
@@ -18,11 +19,20 @@ public class Usuarios {
     String usuarioModificacion;
     String fechaCreacion;
     String fechaModificacion;
+    int rol;
 
-    public Usuarios() {
+    public int getRol() {
+        return rol;
     }
 
-    public Usuarios(int id, String usuario, String contrasena, String nombre, String apellidos, String genero, String fechaNacimiento, String correo, int estado, String usuarioCreacion, String usuarioModificacion, String fechaCreacion, String fechaModificacion) {
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
+
+    public Usuario() {
+    }
+
+    public Usuario(int id, String usuario, String contrasena, String nombre, String apellidos, String genero, String fechaNacimiento, String correo, int estado, String usuarioCreacion, String usuarioModificacion, String fechaCreacion, String fechaModificacion, int rol) {
         this.id = id;
         this.usuario = usuario;
         this.contrasena = contrasena;
@@ -36,6 +46,7 @@ public class Usuarios {
         this.usuarioModificacion = usuarioModificacion;
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
+        this.rol = rol;
     }
 
     public int getId() {
@@ -142,5 +153,4 @@ public class Usuarios {
         this.fechaModificacion = fechaModificacion;
     }
 
-    
 }
