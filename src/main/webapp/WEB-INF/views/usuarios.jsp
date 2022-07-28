@@ -10,13 +10,11 @@
 
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" href="assets/css/customs-styles.css">
-        <link rel="stylesheet" href="assets/css/bootstrap-select.min" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link href="assets/css/usuarios.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/bootstrap-min.css">
+        <link rel="stylesheet" href="assets/css/bootstrap-icons.css" type="text/css">
 
 
 
@@ -76,11 +74,6 @@
                                             <input class="form-check-input" type="checkbox" role="switch" id="check">
                                             <label class="form-check-label" for="flexSwitchCheckDefault">Usuario activo/inactivo</label>
                                         </div>
-
-                                        <!-- <div class="input-group">
-                                            <span class="fs-5 bi bi-toggles input-group-text" id="inputGroupPrepend2"></span>
-                                            <input type="text" class="form-control" name="Estado" id="Estado"required>
-                                        </div>-->
                                     </div>
 
                                     <div class="col-md-4">
@@ -98,16 +91,51 @@
                                             <!--<input type="password" class="form-control" id="contraseña" aria-describedby="passwordHelpInline" >-->
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <label for="Rol" class="form-label">Rol</label>
+                                        <select class="form-select" name="Rol" id="Rol" required>
+                                            <option selected disabled value="">Seleccionar rol</option>
+                                            <option>Administrador</option>
+                                            <option>Operador</option>
+                                            <option>Ventas</option>
+                                        </select>
+                                    </div>
                                 </form>
-                                <div class="col-lg-12">
-                                    <button type="submit" class="btn" style="background-color: #034e52 !important;"onclick="registrar()">Registrar</button>
+                                <br>
+                                <div class="col-xl-12">
+                                    <button type="submit" class="boton btn" style="background-color: #034e52 !important;"onclick="registrar()">Registrar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
 
+            <center>
+                <div class="cuerpo" >
+                    <div class="table-responsive-lg">
+                        <table class="table table-hover table-bordered" border="1" id="tu" class="display" style="width:100%" aling="center">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Usuario</th>                
+                                    <th>Contraseña</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Género</th>                        
+                                    <th>Fecha de Nacimiento</th>
+                                    <th>Correo</th>                       
+                                    <th>Fecha de Creación</th>
+                                    <th>Rol</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                </div>
+            </center>
         </section>
 
         <section class="solistica-popup-message">
@@ -126,8 +154,9 @@
 
         <script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
         <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="assets/js/bootstrap-select.min.js"></script>
         <script type="text/javascript" src="assets/js/custom-scripts.js"></script>
+        <script src="assets/js/datatables.min.js"></script>
+        <script src="assets/js/sweetalert.min.js"></script>
         <script src="assets/js/moment.min.js" type="text/javascript"></script>
         <script src="assets/js/usuarioC.js" type="text/javascript"></script>
     </body>

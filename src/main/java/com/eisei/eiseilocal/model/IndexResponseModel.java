@@ -5,9 +5,9 @@ package com.eisei.eiseilocal.model;
  *
  * @author jose.garcia
  */
-public class ResponseUsuariosModel {
+public class IndexResponseModel {
     private int failure;
-    private Usuarios object;
+    private Usuario object;
     private String message;
 
     public int getFailure() {
@@ -18,11 +18,11 @@ public class ResponseUsuariosModel {
         this.failure = failure;
     }
 
-    public Usuarios getObject() {
+    public Usuario getObject() {
         return object;
     }
 
-    public void setObject(Usuarios object) {
+    public void setObject(Usuario object) {
         this.object = object;
     }
 

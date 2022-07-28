@@ -1,10 +1,15 @@
 package com.eisei.eiseilocal.dao;
 
-import com.eisei.eiseilocal.model.Usuarios;
+import com.eisei.eiseilocal.model.Usuario;
+import java.util.List;
 
 public interface UsuarioDao {
 
-    public Usuarios crearUsuario(Usuarios usu);
+    public Usuario crearUsuario(Usuario usu);
 
-    public Usuarios consultaUsuario(Usuarios us);
+    public Usuario consultaUsuario(Usuario us);
+
+    public Usuario eliminarUsuario(Usuario eUser);
+
+    public List<Usuario> listar();
 }
