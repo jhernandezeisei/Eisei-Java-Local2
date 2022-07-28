@@ -1,4 +1,4 @@
-package com.eisei.eiseilocal.serviceImpl;
+package com.eisei.eiseilocal.daoImpl;
 
 import com.eisei.eiseilocal.config.Conexion;
 import com.eisei.eiseilocal.dao.ProductoDao;
