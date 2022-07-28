@@ -1,14 +1,22 @@
 package com.eisei.eiseilocal.model;
 
-/**
- *
- * @author karla.calderon
- */
-public class UsuariosResponseModel {
+import java.util.List;
+
+public class TUsuarioResponseModel {
 
     private int failure;
-    private Usuarios object;
+    private List<Usuario> object;
+    private Usuario obj;
     private String message;
+
+    public Usuario getObj() {
+        return obj;
+    }
+
+    public void setObj(Usuario obj) {
+        this.obj = obj;
+    }
+    
 
     public int getFailure() {
         return failure;
@@ -18,11 +26,11 @@ public class UsuariosResponseModel {
         this.failure = failure;
     }
 
-    public Usuarios getObject() {
+    public List<Usuario> getObject() {
         return object;
     }
 
-    public void setObject(Usuarios object) {
+    public void setObject(List<Usuario> object) {
         this.object = object;
     }
 

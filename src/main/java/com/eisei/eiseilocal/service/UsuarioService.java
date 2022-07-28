@@ -4,14 +4,21 @@
  */
 package com.eisei.eiseilocal.service;
 
-import com.eisei.eiseilocal.model.Usuarios;
+import com.eisei.eiseilocal.model.Usuario;
+import java.util.List;
 
 /**
  *
  * @author jose.garcia
  */
 public interface UsuarioService {
-    public Usuarios usuarioConsulta(Usuarios usu);
-    public Usuarios usuarioInsertar(Usuarios usua);
-    
+
+    public Usuario usuarioConsulta(Usuario usu);
+
+    public Usuario usuarioInsertar(Usuario usua);
+
+    public Usuario usuarioEliminar(Usuario eUser);
+
+    public List<Usuario> LUsuarios();
+
 }

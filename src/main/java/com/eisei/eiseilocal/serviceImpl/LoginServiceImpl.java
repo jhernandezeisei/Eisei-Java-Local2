@@ -5,7 +5,7 @@
 package com.eisei.eiseilocal.serviceImpl;
 
 import com.eisei.eiseilocal.dao.LoginDao;
-import com.eisei.eiseilocal.model.Usuarios;
+import com.eisei.eiseilocal.model.Usuario;
 import com.eisei.eiseilocal.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,8 +22,8 @@ public class LoginServiceImpl implements LoginService {
     private LoginDao loginDao;
 
     @Override
-    public Usuarios login(Usuarios obj) {
-        Usuarios user = new Usuarios();
+    public Usuario login(Usuario obj) {
+        Usuario user = new Usuario();
         try {
             user = loginDao.login(obj);
         } catch (Exception e) {
