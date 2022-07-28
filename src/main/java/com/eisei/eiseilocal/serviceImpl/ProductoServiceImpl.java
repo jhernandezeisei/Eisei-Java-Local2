@@ -1,5 +1,6 @@
 package com.eisei.eiseilocal.serviceImpl;
 
+import com.eisei.eiseilocal.daoImpl.ProductoDaoImpl;
 import com.eisei.eiseilocal.dao.ProductoDao;
 import com.eisei.eiseilocal.model.Categoria;
 import com.eisei.eiseilocal.model.Producto;
