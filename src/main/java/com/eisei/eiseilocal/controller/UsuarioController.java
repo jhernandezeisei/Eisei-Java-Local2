@@ -129,18 +129,47 @@ public class UsuarioController extends HttpServlet {
         TUsuarioResponseModel objectResponse = new TUsuarioResponseModel();
 
         eUser.setId(id);
-        Usuario u = uService.usuarioEliminar(eUser);
+        objectResponse = uService.usuarioEliminar(eUser);
 
-        if (u != null) {
-            objectResponse.setMessage("Ingreso");
-            objectResponse.setObj(u);
-            objectResponse.setFailure(0);
-            return objectResponse;
-        } else {
-            objectResponse.setFailure(1);
-            objectResponse.setMessage("error");
-            return objectResponse;
-        }
-
+        return objectResponse;
     }
+
+    @RequestMapping(value = "/ModificarUsuario", method = RequestMethod.POST)
+    @ResponseBody
+    protected UsuarioResponseModel ModificarUsuario(
+            @RequestParam(value = "IdUsuario", required = true) int id,
+            @RequestParam(value = "Usuario", required = true) String usuario,
+            @RequestParam(value = "Contrasena", required = true) String contrasena,
+            @RequestParam(value = "Nombre", required = true) String nombre,
+            @RequestParam(value = "Apellidos", required = true) String apellidos,
+            @RequestParam(value = "Genero", required = true) String genero,
+            @RequestParam(value = "FechaNacimiento", required = true) String fechaNac,
+            @RequestParam(value = "Correo", required = true) String correo,
+            @RequestParam(value = "Estado", required = true) int estado,
+            @RequestParam(value = "UsuarioModificacion", required = true) String usuarioModi,
+            @RequestParam(value = "FechaModificacion", required = true) String fechaModi,
+            @RequestParam(value = "IdRol", required = true) int rol,
+            HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        UsuarioResponseModel userResp = new UsuarioResponseModel();
+        Usuario u = new Usuario();
+
+        u.setId(id);
+        u.setUsuario(usuario);
+        u.setContrasena(contrasena);
+        u.setNombre(nombre);
+        u.setApellidos(apellidos);
+        u.setGenero(genero);
+        u.setFechaNacimiento(fechaNac);
+        u.setCorreo(correo);
+        u.setEstado(estado);
+        u.setUsuarioModificacion(usuarioModi);
+        u.setFechaModificacion(fechaModi);
+        u.setRol(rol);
+
+        userResp = uService.usuarioEditar(u);
+
+        return userResp;
+    }
+
 }
