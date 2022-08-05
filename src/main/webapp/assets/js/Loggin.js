@@ -44,20 +44,21 @@ function sendRequestPOSTloggin(fobj, actionURL, user) {
     });
 }
 
+
 function showPopupMessageGeneric(tipo, menssage, show) {
-        $(".solistica-popup-message").removeClass("not-showing");
-        $(".solistica-popup-message").addClass("showing");
-        $("#autodespacho").addClass("not-showing");
+        $(".proyecto-popup-message").removeClass("not-showing");
+        $(".proyecto-popup-message").addClass("showing");
+        $("#proyect").addClass("not-showing");
         $('#tipo').text(tipo);
         $('#mensajeError').text(menssage);
         if(show){
         $('#accept').hide();
     }
     }
-    
+
 function closePopupMessage() {
-    $(".solistica-popup-message").removeClass("showing");
-    $(".solistica-popup-message").addClass("not-showing");
+    $(".proyecto-popup-message").removeClass("showing");
+    $(".proyecto-popup-message").addClass("not-showing");
 
 }
 

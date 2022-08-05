@@ -33,7 +33,8 @@
                                     <div class="col-md-4">
                                         <label for="nombrep" class="form-label">Nombre del Producto</label>
                                         <!--<input type="text" class="form-control" id="validationDefault01"  required>-->
-                                        <input type="text" class="form-control" id="nombrep" required>
+                                        <input type="text" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                               class="form-control" id="nombrep" required>
                                     </div>
 
                                     <div class="col-md-4">
@@ -42,15 +43,16 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="precio" class="form-label">Precio</label>
-                                        <input type="text" class="form-control" id="precio" required >
+                                        <input type="input" name="ESP" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" class="form-control"  id="precio" required min = "0" step="">
+                                        <!--<input value=""  class="form-control" min="0" step="0.01" id="precio" required>-->
                                     </div>
                                     <div class="col-md-4">
                                         <label for="cantidad" class="form-label">Cantidad</label>
-                                        <input type="text" class="form-control" id="cantidad" required >
+                                        <input value="" type="number" class="form-control" min="0" step=""id="cantidad" required >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="clave" class="form-label">Clave</label>
-                                        <input type="text" class="form-control" id="clave" required >
+                                        <input type="text" class="form-control" id="clave" required disabled >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="ddl_categorias" class="form-label">Tipo Producto</label>
@@ -72,7 +74,7 @@
             <center>
                 <div class="cuerpo" >
                     <div class="table-responsive-lg ">
-                        <table class="table table-hover table-bordered " border="1" id="tp" class="display" style="width:100%" aling="center">
+                        <table class="table table-hover table-bordered " border="1" id="tp" class="display" style="width:100%" align="center">
                             <thead>
                                 <tr>
                                     <th>Clave</th>
@@ -80,8 +82,11 @@
                                     <th>Marca</th>
                                     <th>Precio</th>
                                     <th>Stock</th>
-                                    <th>Categoría</th>
+                                    <th>Categoria</th>
                                     <th>Acciones</th>
+                                    <button onclick="exportData()">
+                                <span class="glyphicon glyphicon-download"></span>
+                                Descargar Excel</button>
                                 </tr>
                             </thead>
                         </table>
@@ -92,19 +97,19 @@
         </section>
 
 
-        <section class="solistica-popup-message">
-            <div class="solistica-popup-container">
-                <div class="box-popup">
-                    <div class="popup-message">
-                        <span class="title-popup" id="title-error">Aviso</span>
-                        <span class="message-popup" id="mensajeError"></span>
-                    </div>
-                    <div class="popup-buttons">
-                        <a id="accept" class="solistica-btn btn-orange-light btn-small" href="#" onclick="closePopupMessage()"> Aceptar</a>
-                    </div>
+     <section class="proyecto-popup-message">
+        <div class="proyecto-popup-container">
+            <div class="box-popup">
+                <div class="popup-message">
+                    <span class="title-popup" id="title-error">Aviso</span>
+                    <span class="message-popup" id="mensajeError"></span>
+                </div>
+                <div class="popup-buttons">
+                                        <a id="accept" href="#" class="proyecto-btn btn-green-light btn-small" onclick="closePopupMessage()"> Aceptar</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
         <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>

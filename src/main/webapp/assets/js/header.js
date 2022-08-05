@@ -24,6 +24,7 @@ function productos(){
     window.open("../EiseiLocal/productos", "_self");
 }
 function catalogo(){
+    window.open("../EiseiLocal/catalogo", "_self");
 }
 
 

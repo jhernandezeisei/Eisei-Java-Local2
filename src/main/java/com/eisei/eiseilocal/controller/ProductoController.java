@@ -1,5 +1,7 @@
 package com.eisei.eiseilocal.controller;
 
+import com.eisei.eiseilocal.daoImpl.ProductoDaoImpl;
+import com.eisei.eiseilocal.model.CatalogoResponseModel;
 import com.eisei.eiseilocal.model.Categoria;
 import com.eisei.eiseilocal.model.Producto;
 import com.eisei.eiseilocal.model.ProductoResponseModel;
@@ -49,7 +51,7 @@ public class ProductoController extends HttpServlet {
             @RequestParam(value = "IdCategoria", required = true) int ddl_categorias,
             @RequestParam(value = "Marca", required = true) String marca,
             @RequestParam(value = "Cantidad", required = true) int cantidad,
-            @RequestParam(value = "Precio", required = true) int precio,
+            @RequestParam(value = "Precio", required = true) float precio,
             @RequestParam(value = "FechaCreacion", required = true) String fechacreacion,
             @RequestParam(value = "UsuarioCreacion", required = true) String usuarioCreacion,
             @RequestParam(value = "FechaModificacion", required = true) String fechaModificacion,
@@ -80,6 +82,7 @@ public class ProductoController extends HttpServlet {
             }       
     }
 
+
 @RequestMapping(value = "/ConsultaProductos", method = RequestMethod.GET)
     @ResponseBody
 
@@ -102,5 +105,61 @@ public class ProductoController extends HttpServlet {
         }
 
     }
+@RequestMapping(value = "/GenerarClave", method = RequestMethod.GET)
+    @ResponseBody
 
+    protected TProductoResponseModel GenerarClave()
+            throws ServletException, IOException {
+        Producto PR = new Producto();
+        TProductoResponseModel objectResponse = new TProductoResponseModel();
+
+        //Usuario x = uService.usuarioConsulta(user);
+        prod.setClave("codigo");
+        Producto x = pService.clave(prod);
+
+        if (PR != null) {
+            objectResponse.setMessage("Acceso a los datos");
+            objectResponse.setObj(x);
+            objectResponse.setFailure(0);
+            return objectResponse;
+        } else {
+            objectResponse.setFailure(1);
+            objectResponse.setMessage("No tienes aceso a los datos");
+            return objectResponse;
+        }
+
+    }
+ProductoDaoImpl pdao = new ProductoDaoImpl();
+
+    @Autowired
+    private ProductoService cService;
+    Producto catalogo = new Producto();
+
+    @RequestMapping(value = "/catalogo", method = RequestMethod.GET)
+    public ModelAndView image() {
+        ModelAndView indexModel = new ModelAndView("catalogo", "command", new Object());
+        return indexModel;
+    }
+
+    @RequestMapping(value = "/catalogoListar", method = RequestMethod.GET)
+    @ResponseBody
+    protected CatalogoResponseModel catalogo(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        CatalogoResponseModel objectResponse = new CatalogoResponseModel();
+        List<Producto> lista = new ArrayList<>();
+        lista = cService.catalogoListar();
+
+        if (lista != null) {
+            objectResponse.setMessage("Ingreso");
+            objectResponse.setObject(lista);
+            objectResponse.setFailure(0);
+            return objectResponse;
+        } else {
+            objectResponse.setFailure(1);
+            objectResponse.setMessage("error: no hay registros");
+            return objectResponse;
+        }
+
+    }
 }
