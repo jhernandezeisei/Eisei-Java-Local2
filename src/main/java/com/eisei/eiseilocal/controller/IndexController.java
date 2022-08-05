@@ -2,8 +2,8 @@ package com.eisei.eiseilocal.controller;
 
 import com.eisei.eiseilocal.dao.LoginDao;
 import com.eisei.eiseilocal.daoImpl.LoginDaoImpl;
-import com.eisei.eiseilocal.model.ResponseUsuariosModel;
-import com.eisei.eiseilocal.model.Usuarios;
+import com.eisei.eiseilocal.model.IndexResponseModel;
+import com.eisei.eiseilocal.model.Usuario;
 import com.eisei.eiseilocal.service.LoginService;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class IndexController extends HttpServlet {
 
     @Autowired
     private LoginService loginService;
-    Usuarios user = new Usuarios();
+    Usuario user = new Usuario();
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -38,21 +38,22 @@ public class IndexController extends HttpServlet {
 
     @RequestMapping(value = "/Userlogin", method = RequestMethod.POST)
     @ResponseBody
-    protected ResponseUsuariosModel doPost(
+    protected IndexResponseModel doPost(
             @RequestParam(value = "Usuario", required = false) String usuario,
             @RequestParam(value = "Contrasena", required = false) String contraseña,
             HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ResponseUsuariosModel objectResponse = new ResponseUsuariosModel();
+        IndexResponseModel objectResponse = new IndexResponseModel();
 
         user.setUsuario(usuario);
         user.setContrasena(contraseña);
 
-        Usuarios u = loginService.login(user);
+        Usuario u = loginService.login(user);
 
         if (u.getUsuario() != null) {
             request.getSession().setAttribute("nom", usuario);
+            request.getSession().setAttribute("rol", u.getRol());
             objectResponse.setMessage("Ingreso");
             objectResponse.setObject(u);
             objectResponse.setFailure(0);

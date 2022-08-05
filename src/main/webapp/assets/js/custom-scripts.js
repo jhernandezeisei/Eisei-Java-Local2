@@ -1,18 +1,17 @@
 function showPopupMessage(){
-	$(".solistica-popup").removeClass("not-showing");
-	$(".solistica-popup").addClass("showing");
-	$("#autodespacho").addClass("not-showing");
-	
+    $(".proyecto-popup").removeClass("not-showing");
+    $(".proyecto-popup").addClass("showing");
+    $("#proyect").addClass("not-showing");
+
 }
 
 function closePopupMessage(){
-	$(".solistica-popup").removeClass("showing");
-	$(".solistica-popup").addClass("not-showing");
-	
+    $(".proyecto-popup").removeClass("showing");
+    $(".solistica-popup").addClass("not-showing");
+
 }
 
 function showPopupMessageAutoinspeccion(){
-	$("#autodespacho").removeClass("not-showing");
-	$("#autodespacho").addClass("showing");
+    $("#proyect").removeClass("not-showing");
+    $("#proyect").addClass("showing");
 }
-

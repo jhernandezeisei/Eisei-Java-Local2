@@ -1,13 +1,19 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.eisei.eiseilocal.model;
+
+import java.util.List;
 
 /**
  *
- * @author karla.calderon
+ * @author ehecatl.moreno
  */
-public class UsuariosResponseModel {
+public class CatalogoResponseModel {
 
     private int failure;
-    private Usuarios object;
+    private List<Producto> object;
     private String message;
 
     public int getFailure() {
@@ -18,11 +24,11 @@ public class UsuariosResponseModel {
         this.failure = failure;
     }
 
-    public Usuarios getObject() {
+    public List<Producto> getObject() {
         return object;
     }
 
-    public void setObject(Usuarios object) {
+    public void setObject(List<Producto> object) {
         this.object = object;
     }
 
@@ -33,4 +39,5 @@ public class UsuariosResponseModel {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }

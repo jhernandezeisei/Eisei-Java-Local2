@@ -1,10 +1,30 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
- */
+var rol='';
+$(document).ready(function () {
+    rol=$('#rol').attr("dataUser");
+    console.log(rol);
+     if (rol === "2") {
+        $('#usuarios').hide();
+    } else if (rol === "3"){
+        $('#usuarios').hide();
+        $('#productos').hide();
+    }
+   // clearTimeout();
+  
+});
 
+function inicio(){
+    window.open("../EiseiLocal/panel", "_self");
+}
 
-function Ingresar(){
+function usuarios(){
     window.open("../EiseiLocal/usuarios", "_self");
 }
+
+function productos(){
+    window.open("../EiseiLocal/productos", "_self");
+}
+function catalogo(){
+    window.open("../EiseiLocal/catalogo", "_self");
+}
+
 

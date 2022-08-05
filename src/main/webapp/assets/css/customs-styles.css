@@ -1,4 +1,4 @@
-.solistica-btn {
+.proyecto-btn {
     text-align: center;
     color: #fff;
     border: none
@@ -99,7 +99,7 @@
     background: #f9b014
 }
 
-.btn-orange-light {
+.btn-orange-light:hover {
     background: #f9b014;
     color: #4f4e4c;
     font-weight: 700
@@ -114,7 +114,7 @@
     background: #4f4e4c
 }
 
-.solistica-popup-return {
+.proyecto-popup-return {
     width: 100%;
     height: 100%;
     /*    background: #202c52;*/
@@ -126,7 +126,7 @@
     display: none
 }
 
-.solistica-popup-monitoring {
+.proyecto-popup-monitoring {
     width: 100%;
     height: 100%;
     /*    background: #202c52;*/
@@ -138,7 +138,7 @@
     display: none
 }
 
-.solistica-popup-error {
+.proyecto-popup-error {
     width: 100%;
     height: 100%;
     /*    background: #202c52;*/
@@ -150,7 +150,7 @@
     display: none
 }
 
-.solistica-popup-message {
+.proyecto-popup-message {
     width: 100%;
     height: 100%;
     /*background: #202c52;*/
@@ -162,7 +162,7 @@
     display: none
 }
 
-.solistica-popup-message-success{
+.proyecto-popup-message-success{
     width: 100%;
     height: 100%;
     /*background: #202c52;*/
@@ -174,7 +174,7 @@
     display: none
 }
 
-.solistica-popup-bulkload {
+.proyecto-popup-bulkload {
     width: 100%;
     height: 100%;
     /*    background: #202c52;*/
@@ -198,15 +198,15 @@
     display: none
 }
 
-.solistica-popup-container {
+.proyecto-popup-container {
     display: table-cell;
     vertical-align: middle
 }
-.solistica-spinner-container {
+.proyecto-spinner-container {
     display: table-cell;
     vertical-align: middle
 }
-.solistica-popup-container-error {
+.proyecto-popup-container-error {
     display: table-cell;
     vertical-align: middle
 }
@@ -253,15 +253,13 @@
     padding: 20px
 }
 
-#autodespacho .popup-message span {
+#proyect .popup-message span {
     width: 90%
 }
 
-#autodespacho .title-popup {
+#proyect .title-popup {
     font-size: 1.5em
 }
-
-
 
 /* SPIN LOADER CSS */
 
@@ -309,3 +307,4 @@
     float: right;
     padding-right: 1%;
 }
+
