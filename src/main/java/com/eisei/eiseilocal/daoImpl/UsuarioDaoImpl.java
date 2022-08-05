@@ -22,14 +22,14 @@ import org.springframework.stereotype.Repository;
 @Component
 @Repository
 public class UsuarioDaoImpl implements UsuarioDao {
-    
+
     Usuario user = new Usuario();
     String resp = null;
     Connection con;
     PreparedStatement ps = null;
     ResultSet rs = null;
     Conexion c = new Conexion();
-    
+
     @Override
     public Usuario crearUsuario(Usuario usu) {
         try {
@@ -61,10 +61,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
+
         return usu;
     }
-    
+
     @Override
     public Usuario consultaUsuario(Usuario us) {
         try {
@@ -75,40 +75,40 @@ public class UsuarioDaoImpl implements UsuarioDao {
             System.out.println(sql);
             ps.setString(1, us.getUsuario());
             rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 user.setUsuario(rs.getString(1));
             }
-            
+
             ps.close();
             rs.close();
             con.close();
-            
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return user;
-        
+
     }
-    
+
     @Override
     public List<Usuario> listar() {
         List<Usuario> lista = new ArrayList<>();
         try {
             Conexion c = new Conexion();
             con = c.getConnection();
-            
+
             String sql = "{call SP_Usuarios()}";
             ps = con.prepareStatement(sql);
             System.out.println(sql);
-            
+
             rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 System.out.println("Mostrando datos");
-                
+
                 Usuario user = new Usuario();
-                
+
                 user.setId(rs.getInt("IdUsuario"));
                 user.setUsuario(rs.getString("Usuario"));
                 user.setContrasena(rs.getString("Contrasena"));
@@ -120,38 +120,72 @@ public class UsuarioDaoImpl implements UsuarioDao {
                 user.setFechaCreacion(rs.getString("FechaCreacion"));
                 user.setRol(rs.getInt("IdRol"));
                 lista.add(user);
-                
+
             }
-            
+
         } catch (Exception e) {
-            
+
         }
         return lista;
     }
-    
+
     @Override
     public Usuario eliminarUsuario(Usuario eUser) {
         try {
             Conexion c = new Conexion();
             con = c.getConnection();
-            
+
             String sql = "{call SP_EliminarUsuario(?)}";
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, eUser.getId());
             System.out.println(sql);
-            
+
             int res = ps.executeUpdate();
-            
+
             if (res > 0) {
                 System.out.println("Se actualizo el registro");
             } else {
                 System.out.println("No se guardo el registro");
             }
-            
+
         } catch (Exception e) {
-            
+
         }
         return eUser;
+    }
+
+    @Override
+    public Usuario editarUsuario(Usuario us) {
+        try {
+            Conexion c = new Conexion();
+            con = c.getConnection();
+
+            String sql = "{call SP_EditarUsuario(?,?,?,?,?,?,?,?,?,?,?,?)}";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, us.getId());
+            ps.setString(2, us.getUsuario());
+            ps.setString(3, us.getContrasena());
+            ps.setString(4, us.getNombre());
+            ps.setString(5, us.getApellidos());
+            ps.setString(6, us.getGenero());
+            ps.setString(7, us.getFechaNacimiento());
+            ps.setString(8, us.getCorreo());
+            ps.setInt(9, us.getEstado());
+            ps.setString(10, us.getUsuarioModificacion());
+            ps.setString(11, us.getFechaModificacion());
+            ps.setInt(12, us.getRol());
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                System.out.println("Se actualizo el registro");
+            } else {
+                System.out.println("No se guardo el registro");
+            }
+
+        } catch (Exception e) {
+
+        }
+        return us;
     }
 }

@@ -4,7 +4,9 @@
  */
 package com.eisei.eiseilocal.service;
 
+import com.eisei.eiseilocal.model.TUsuarioResponseModel;
 import com.eisei.eiseilocal.model.Usuario;
+import com.eisei.eiseilocal.model.UsuarioResponseModel;
 import java.util.List;
 
 /**
@@ -17,7 +19,9 @@ public interface UsuarioService {
 
     public Usuario usuarioInsertar(Usuario usua);
 
-    public Usuario usuarioEliminar(Usuario eUser);
+    public TUsuarioResponseModel usuarioEliminar(Usuario eUser);
+
+    public UsuarioResponseModel usuarioEditar(Usuario us);
 
     public List<Usuario> LUsuarios();
 

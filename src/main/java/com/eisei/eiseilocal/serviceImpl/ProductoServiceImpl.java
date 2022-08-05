@@ -23,7 +23,8 @@ public class ProductoServiceImpl implements ProductoService {
     private ProductoDaoImpl productoDaoImpl;
     @Autowired
     private ProductoDao productoDao;
-
+ @Autowired
+    private ProductoDao catalogoDao;
     @Override
 
     public List<Producto> obtenerProductos() {
@@ -58,5 +59,30 @@ public class ProductoServiceImpl implements ProductoService {
             return null;
         }
         return prod;
+    }
+
+ @Override
+ public Producto clave(Producto pro){
+//   Producto pro = new Producto();
+     Producto PR = new Producto();
+        try {
+            PR = productoDao.crearClave(pro);
+        } catch (Exception e) {
+            return null;
+        }
+        return PR;
+
+}
+
+
+    @Override
+    public List<Producto> catalogoListar() {
+        List<Producto> lista = new ArrayList<>();
+        try {
+            lista = catalogoDao.catalogoList();
+        } catch (Exception e) {
+            return null;
+        }
+        return lista;
     }
 }

@@ -12,16 +12,17 @@ public class Producto {
     String nombreProducto;
     String marca;
     int cantidad;
-    int precio;
+    float precio;
     String fechaCreacion;
     String usuarioCreacion;
     String fechaModificacion;
     String usuarioModificacion;
+    String fotoProductoString;
 
     public Producto() {
     }
 
-    public Producto(int idCategoria, int idProducto, String clave, String nombreProducto, String marca, int cantidad, int precio, String fechaCreacion, String usuarioCreacion, String fechaModificacion, String usuarioModificacion) {
+    public Producto(int idCategoria, int idProducto, String clave, String nombreProducto, String marca, int cantidad, float precio, String fechaCreacion, String usuarioCreacion, String fechaModificacion, String usuarioModificacion, String fotoProductoString) {
         this.idCategoria = idCategoria;
         this.idProducto = idProducto;
         this.clave = clave;
@@ -33,6 +34,7 @@ public class Producto {
         this.usuarioCreacion = usuarioCreacion;
         this.fechaModificacion = fechaModificacion;
         this.usuarioModificacion = usuarioModificacion;
+        this.fotoProductoString = fotoProductoString;
     }
 
     public int getIdCategoria() {
@@ -83,11 +85,11 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
-    public int getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
     }
 
@@ -121,5 +123,13 @@ public class Producto {
 
     public void setUsuarioModificacion(String usuarioModificacion) {
         this.usuarioModificacion = usuarioModificacion;
+    }
+
+public String getfotoProductoString() {
+        return fotoProductoString;
+    }
+
+    public void setfotoProductoString(String fotoProductoString) {
+        this.fotoProductoString=fotoProductoString;
     }
 }
