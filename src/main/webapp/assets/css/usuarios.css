@@ -13,14 +13,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background-color: #c4d7e1 !important;
 }
 .card{
-    
+
     border-radius: 35px;
     border-color: black;
     box-shadow: 26px 20px 0px 0px rgba(0,0,0,0.1);
 }
 .card-body{
-   /* background-color: #F5F5F5;*/
-   padding-top: 10px;
+    /* background-color: #F5F5F5;*/
+    padding-top: 10px;
 }
 p{
     font-family: 'Alegreya Sans', sans-serif;
@@ -32,8 +32,10 @@ p{
     color: #001141 !important;
     font-weight: bold;
 }
+
 .form-control{
     font-family: 'Alegreya Sans', sans-serif;
+
 }
 .boton{
     font-family: 'Alegreya Sans', sans-serif;
@@ -41,6 +43,30 @@ p{
     float: right;
     background-color: #034e52 !important;
     color: white !important;
+    width: 90px;
+    height: 40px;
+}
+.boton1{
+    font-family: 'Alegreya Sans', sans-serif;
+    font-weight: bold;
+    float: right;
+    background-color: #eac700 !important;
+    color: white !important;
+    width: 90px;
+    height: 40px;
+    margin-right: 20px;
+}
+.boton2{
+    align-content: center;
+    float: right;
+    height: 40px;
+    margin-right: 100px;
+}
+.export{
+   float: right; 
+   width: 150px;
+    height: 40px;
+   margin-top: 20px;
 }
 table {
     border-collapse: collapse;
@@ -72,8 +98,11 @@ table th {
 
 }
 mostrar{
-     color: #001141
+    color: #001141
 }
 .btn{
     align-items: center
+}
+.form-check{
+    margin-left: 1.5em
 }
