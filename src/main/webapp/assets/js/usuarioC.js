@@ -479,19 +479,20 @@ function sendUserRequestPOST(fobj, actionURL) {
 }
 
 function showPopupMessageGeneric(tipo, menssage, show) {
-    $(".solistica-popup-message").removeClass("not-showing");
-    $(".solistica-popup-message").addClass("showing");
-    $("#autodespacho").addClass("not-showing");
-    $('#tipo').text(tipo);
-    $('#mensajeError').text(menssage);
-    if (show) {
-        $('#accept').hide();
-    }
+        $(".proyecto-popup-message").removeClass("not-showing");
+        $(".proyecto-popup-message").addClass("showing");
+        $("#proyect").addClass("not-showing");
+        $('#tipo').text(tipo);
+        $('#mensajeError').text(menssage);
+        if(show){
+        $('#accept').hide();
+    }
+    }
+function closePopupMessage() {
+    $(".proyecto-popup-message").removeClass("showing");
+    $(".proyecto-popup-message").addClass("not-showing");
 }
 
-function closePopupMessage() {
-    $(".solistica-popup-message").removeClass("showing");
-    $(".solistica-popup-message").addClass("not-showing");
-}
+
 
 

@@ -15,4 +15,8 @@ public interface ProductoService {
     public List<Categoria> obtenerCategoria();
 
     public List<Producto> obtenerProductos();
+
+    public Producto clave(Producto pro);
+
+      List<Producto> catalogoListar();
 }
