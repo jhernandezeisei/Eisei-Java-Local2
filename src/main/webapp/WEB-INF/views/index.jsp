@@ -58,19 +58,19 @@
         
     
         
-        <section class="solistica-popup-message">
-		<div class="solistica-popup-container">
-			<div class="box-popup">
-				<div class="popup-message">
-					<span class="title-popup" id="title-error">Aviso</span>
-					<span class="message-popup" id="mensajeError"></span>
-				</div>
-				<div class="popup-buttons">
-                                        <a id="accept" href="#" class="solistica-btn btn-orange-light btn-small" onclick="closePopupMessage()"> Aceptar</a>
-				</div>
-			</div>
-		</div>
-	</section>
+      <section class="proyecto-popup-message">
+        <div class="proyecto-popup-container">
+            <div class="box-popup">
+                <div class="popup-message">
+                    <span class="title-popup" id="title-error">Aviso</span>
+                    <span class="message-popup" id="mensajeError"></span>
+                </div>
+                <div class="popup-buttons">
+                                        <a id="accept" href="#" class="proyecto-btn btn-green-light btn-small" onclick="closePopupMessage()"> Aceptar</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
         <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>

@@ -17,4 +17,11 @@ public interface ProductoDao {
     public List<Categoria> obtenerCategoria();
 
     public Producto crearProducto(Producto pro);
+
+    public Producto crearClave(Producto pro);
+
+    List<Producto> catalogoList();
+
+  
+
 }
