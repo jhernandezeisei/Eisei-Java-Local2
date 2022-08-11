@@ -62,10 +62,10 @@ function llenarTabla(data) {
                 }},
             {data: "precio",
                 render: function (data) {
-                    if (data == null || data == "") {
+                    if (data == null || data == "$") {
                         return "-";
                     } else {
-                        return "$" + data;
+                        return  data;
                     }
                 }},
             {data: "cantidad",
@@ -78,15 +78,17 @@ function llenarTabla(data) {
                 }},
             {data: "idCategoria",
                 render: function (data) {
-                    if (data == null || data == "") {
-                        return "-";
-                    } else {
+                    if (data === 1 ) {
+                        return "Teléfonos";
+                    } else if(data === 2){
+                        return"Televisores"
+                    }{
                         return data;
                     }
                 }},
             {data: "btn",
                 render: function (data) {
-                    return "<button onclick='editar(" + data + ")' class='btn btn-warning'><i class='bi bi-pencil-fill'></i></button>";
+                    return "<button id='editar' onclick='editar(" + data + ")' class='btn btn-warning'><i class='bi bi-pencil-fill'></i></button>";
 
                 }}
 
@@ -102,12 +104,133 @@ function llenarTabla(data) {
 
 
 }
+//function prueba(){
+////    var clave = $('#clave').val().trim();
+////    buscarId({Clave:clave}, "../EiseiLocal/llamarId");
+////}
 
-function editar() {
-    var nombreP = $('');
-    alert('editar');
-    console.log()
+function buscarId(fobj, actionURL) {
+    $.ajax({
+        type: "GET",
+        url: actionURL,
+        async: true,
+        data: fobj,
+        async: true,
+        success: function (data) {
+       for (let item of data.object) {
+
+           $('#nombrep').val(item.nombreProducto);
+        $('#marca').val(item.marca);
+        $('#precio').val(item.precio);
+        $('#cantidad').val(item.cantidad);
+        
+       $('#ddl_categorias').val(item.idCategoria);
+          $('#clave').val(item.clave);
+     
+    }
+           
+             
+
+         
+               
+         
+        },
+        error: function (jqxhr, settings, thrownError) {
+            console.log("jqxhr.responseText=" + jqxhr.responseText);
+        },
+        fail: function (jqXHR, textStatus) {
+            console.log(">>sendRequestJQ(): thrownError:" + thrownError);
+            console.log(">>sendRequestJQ(): jqXHR:" + jqXHR);
+        }
+    });
+
 }
+
+function editar(data) {
+    document.getElementById('edi').disabled = false;
+    document.getElementById('registro').disabled = true;
+    $('#tp tr').on('click', function () {
+      var clave = $(this).find('td:eq(0)').text();
+    buscarId({Clave:clave}, "../EiseiLocal/llamarId");
+       
+//        $('#nombrep').val(data.object.nombreProducto);
+//        $('#marca').val(data.object.Marca);
+//        $('#precio').val(data.object.Precio);
+//        $('#cantidad').val(data.object.Cantidad);
+//      //  $('#clave').val($(this).find('td:eq(0)').text());
+////        console.log($(this).find('td:eq(5)').text())       
+//       $('#ddl_categorias').val(data.object.IdCategorias);
+//       
+//       $('#clave').val(data.object.Clave);
+
+
+     
+     
+    });
+}
+
+function modificar() {
+  
+    var np = $('#nombrep').val().trim();
+    var marca = $('#marca').val().trim();
+    
+    var cant = $('#cantidad').val();
+    var precio = $('#precio').val().trim();
+     var clave = $('#clave').val().trim();
+    var idc = $('#ddl_categorias').val();
+//    console.log(idc);
+
+
+    
+  
+   
+    if ((np !== "") && (marca !== "") && (precio !== "") && (cant !== "") && (clave !=="") &&(idc !== null) ) {
+        
+      
+        sendEditarRequest({ NombreProducto:  np,  Marca: marca,Clave:clave,  Precio: precio, Cantidad: cant, IdCategoria:idc  }, "../EiseiLocal/EditarProducto");
+      
+    } else {
+    }
+}
+function sendEditarRequest(fobj, actionURL) {
+     console.log(fobj);
+    $.ajax({
+        type: "POST",
+        url: actionURL,
+        data: fobj,
+        async: true,
+        success: function (data) {
+          
+            if (data.message === 'Editado') {
+                var mensaje = "El Producto se modifico correctamente";
+                showPopupMessageGeneric("El Producto se modifico correctamente", mensaje);
+//                formulario.reset();
+//                location.reload();
+                document.getElementById('edi').disabled = true;
+                document.getElementById('registro').disabled = false;
+                destroyTable();
+              
+                sendProductT();
+            } else {
+                var mensaje = "Request failed";
+                showPopupMessageGeneric("Aviso", mensaje);
+            }
+        },
+        error: function (jqxhr, settings, thrownError) {
+            alert("Error");
+            console.log("jqxhr.responseText=" + jqxhr.responseText);
+        },
+        fail: function (jqXHR, textStatus) {
+            alert("fail");
+            console.log(">>sendRequestJQ(): thrownError:" + thrownError);
+            console.log(">>sendRequestJQ(): jqXHR:" + jqXHR);
+        }
+    });
+}
+
+
+
+
 
 function sendProductT() {
     $.ajax({

@@ -57,13 +57,16 @@
                                     <div class="col-md-4">
                                         <label for="ddl_categorias" class="form-label">Tipo Producto</label>
                                         <select class="form-select" id="ddl_categorias" required>
-                                            <option selected disabled value="">Seleccionar tipo de producto</option>
+                                            <option selected disabled value="0">Seleccionar tipo de producto</option>
+<!--                                            <option>Telefonos</option>
+                                            <option>Televisores</option>-->
                                         </select>
                                     </div>
                                 </form>
                                 <br>
                                 <div class="col-lg-12">
-                                    <button type="submit" class="boton btn" style="background-color: #034e52 !important;"onclick="registrarP()">Registrar</button>
+                                    <button type="submit" class="boton btn" id="registro" style="background-color: #034e52 !important;"onclick="registrarP()">Registrar</button>
+                                     <button type="submit" class="boton1 btn btn-warning" id="edi" onclick="modificar()">Editar</button>
                                 </div>
                             </div>
                         </div>

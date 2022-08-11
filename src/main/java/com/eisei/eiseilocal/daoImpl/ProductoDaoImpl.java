@@ -176,7 +176,8 @@ public class ProductoDaoImpl implements ProductoDao {
 
         return pro;
     }
-@Override
+
+    @Override
     public List<Producto> catalogoList() {
         List<Producto> lista = new ArrayList<>();
         try {
@@ -201,4 +202,82 @@ public class ProductoDaoImpl implements ProductoDao {
         return lista;
     }
 
+    @Override
+    public Producto editarProducto(Producto prod) {
+        try {
+            Conexion c = new Conexion();
+            con = c.getConnection();
+
+            String sql = "{call SP_EditarProd(?,?,?,?,?,?)}";
+
+            ps = con.prepareCall(sql);
+            ps.setString(1, prod.getNombreProducto());
+            ps.setString(2, prod.getMarca());
+            ps.setString(3, prod.getClave());
+           ps.setFloat(4, prod.getPrecio());
+          ps.setInt(5, prod.getCantidad());
+            ps.setInt(6, prod.getIdCategoria());
+
+            
+          
+            
+
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                System.out.println("Se actualizo el registro");
+            } else {
+                System.out.println("No se guardo el registro");
+            }
+
+        } catch (Exception e) {
+
+        }
+        return prod;
+    }
+
+@Override
+public List<Producto> llamarid(Producto pr) {
+List<Producto> lista = new ArrayList<>();
+
+
+
+        try {
+            Conexion c = new Conexion();
+            con = c.getConnection();
+              
+
+            String sql = "{call SP_consultar(?)}";
+
+            ps = con.prepareStatement(sql);
+           
+            ps.setString(1, pr.getClave());
+//            ps.setString(2, prod.getNombreProducto());
+//            ps.setInt(3, prod.getIdCategoria());
+//            ps.setString(4,prod.getMarca());
+//            ps.setInt(5, prod.getCantidad());
+//            ps.setFloat(6, prod.getPrecio());
+            
+
+             rs = ps.executeQuery();
+             while (rs.next()) {
+               
+                pr.setClave(rs.getString("Clave"));
+                pr.setNombreProducto(rs.getString("NombreProducto"));
+                pr.setIdCategoria(rs.getInt("IdCategoria"));
+                pr.setMarca(rs.getString("Marca"));
+                pr.setCantidad(rs.getInt("Cantidad"));
+                pr.setPrecio(rs.getFloat("Precio"));
+                
+               
+                lista.add(pr);
+              
+            }
+        
+
+        } catch (Exception e) {
+
+        }
+        return lista;
+    }
 }

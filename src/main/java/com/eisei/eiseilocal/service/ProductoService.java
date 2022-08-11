@@ -2,6 +2,8 @@ package com.eisei.eiseilocal.service;
 
 import com.eisei.eiseilocal.model.Categoria;
 import com.eisei.eiseilocal.model.Producto;
+import com.eisei.eiseilocal.model.eProductoResponseModel;
+
 import java.util.List;
 
 /**
@@ -18,5 +20,13 @@ public interface ProductoService {
 
     public Producto clave(Producto pro);
 
-      List<Producto> catalogoListar();
+    List<Producto> catalogoListar();
+  
+    public eProductoResponseModel prodEditar (Producto pro);
+
+
+    public List<Producto> llamarcat(Producto pr);
+   
+    
+//    public Producto proEdicion (Producto pro);
 }
