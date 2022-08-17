@@ -22,6 +22,10 @@ public interface ProductoDao {
 
     List<Producto> catalogoList();
 
+    public Producto editarProducto(Producto prod);
+   
+    public List<Producto> llamarid(Producto pr);
+
   
 
 }

@@ -6,6 +6,7 @@ import com.eisei.eiseilocal.model.Categoria;
 import com.eisei.eiseilocal.model.Producto;
 import com.eisei.eiseilocal.model.ProductoResponseModel;
 import com.eisei.eiseilocal.model.TProductoResponseModel;
+import com.eisei.eiseilocal.model.eProductoResponseModel;
 import com.eisei.eiseilocal.service.ProductoService;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,19 +32,20 @@ public class ProductoController extends HttpServlet {
     private ProductoService pService;
     Producto prod = new Producto();
 
-@RequestMapping(value = "/productos", method = RequestMethod.GET)
+    @RequestMapping(value = "/productos", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView indexModel = new ModelAndView("productos", "command", new Object());
         return indexModel;
     }
-@RequestMapping(value = "/categorias", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/categorias", method = RequestMethod.GET)
     @ResponseBody
     public List<Categoria> obtenerCategoria() {
         return pService.obtenerCategoria();
 
     }
 
-@RequestMapping(value = "/CrearProducto", method = RequestMethod.POST)
+    @RequestMapping(value = "/CrearProducto", method = RequestMethod.POST)
     @ResponseBody
     protected ProductoResponseModel doPost(
             @RequestParam(value = "Clave", required = true) String clave,
@@ -58,32 +60,31 @@ public class ProductoController extends HttpServlet {
             @RequestParam(value = "UsuarioModificacion", required = true) String usuarioModificacion,
             HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           
-             ProductoResponseModel respObj = new ProductoResponseModel();
-            prod.setClave(clave);
-            prod.setNombreProducto(nombrep);
-            prod.setIdCategoria(ddl_categorias);
-            prod.setMarca(marca);
-            prod.setCantidad(cantidad);
-            prod.setPrecio(precio);
-            prod.setFechaCreacion(fechacreacion);
-            prod.setUsuarioCreacion(usuarioCreacion);
-            prod.setFechaModificacion(fechaModificacion);
-            prod.setUsuarioModificacion(usuarioModificacion);
-            
-            Producto p = pService.productoInsertar(prod);
 
-            if (p.getClave()!= null) {
-                respObj.setMessage("Registro");
-                respObj.setObject(p);
-                return respObj;
-            } else {
-                return respObj;
-            }       
+        ProductoResponseModel respObj = new ProductoResponseModel();
+        prod.setClave(clave);
+        prod.setNombreProducto(nombrep);
+        prod.setIdCategoria(ddl_categorias);
+        prod.setMarca(marca);
+        prod.setCantidad(cantidad);
+        prod.setPrecio(precio);
+        prod.setFechaCreacion(fechacreacion);
+        prod.setUsuarioCreacion(usuarioCreacion);
+        prod.setFechaModificacion(fechaModificacion);
+        prod.setUsuarioModificacion(usuarioModificacion);
+
+        Producto p = pService.productoInsertar(prod);
+
+        if (p.getClave() != null) {
+            respObj.setMessage("Registro");
+            respObj.setObject(p);
+            return respObj;
+        } else {
+            return respObj;
+        }
     }
 
-
-@RequestMapping(value = "/ConsultaProductos", method = RequestMethod.GET)
+    @RequestMapping(value = "/ConsultaProductos", method = RequestMethod.GET)
     @ResponseBody
 
     protected TProductoResponseModel ConsultaProductos()
@@ -105,7 +106,8 @@ public class ProductoController extends HttpServlet {
         }
 
     }
-@RequestMapping(value = "/GenerarClave", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/GenerarClave", method = RequestMethod.GET)
     @ResponseBody
 
     protected TProductoResponseModel GenerarClave()
@@ -129,7 +131,7 @@ public class ProductoController extends HttpServlet {
         }
 
     }
-ProductoDaoImpl pdao = new ProductoDaoImpl();
+    ProductoDaoImpl pdao = new ProductoDaoImpl();
 
     @Autowired
     private ProductoService cService;
@@ -162,4 +164,60 @@ ProductoDaoImpl pdao = new ProductoDaoImpl();
         }
 
     }
+
+    @RequestMapping(value = "/EditarProducto", method = RequestMethod.POST)
+    @ResponseBody
+    protected eProductoResponseModel editarProd(
+            @RequestParam(value = "NombreProducto", required = true) String np,
+            @RequestParam(value = "Marca", required = true) String marca,
+            @RequestParam(value = "Clave", required = true) String clave,
+          
+            @RequestParam(value = "Precio", required = true) float precio,
+            @RequestParam(value = "Cantidad", required = true) int cant,
+            @RequestParam(value = "IdCategoria", required = true) int idc,
+            HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        eProductoResponseModel eproResp = new eProductoResponseModel();
+        Producto prod = new Producto();
+        prod.setNombreProducto(np);
+        prod.setMarca(marca);
+        prod.setClave(clave);
+        prod.setPrecio(precio);
+        prod.setCantidad(cant);
+        prod.setIdCategoria(idc);
+
+        //eproResp = pService.prodEditar(prod);
+        eproResp = pService.prodEditar(prod);
+
+        return eproResp;
+    }
+  @RequestMapping(value = "/llamarId", method = RequestMethod.GET)
+    @ResponseBody
+    protected TProductoResponseModel llamarid
+   
+( @RequestParam(value = "Clave", required = true) String clave,
+HttpServletRequest request, HttpServletResponse response)
+
+            throws ServletException, IOException {
+
+       
+        Producto pr = new Producto();
+         pr.setClave(clave);
+ TProductoResponseModel objectResponse = new TProductoResponseModel();
+        List<Producto> lista = new ArrayList<>();
+        lista = cService.llamarcat(pr);
+       
+
+        if (lista != null) {
+            objectResponse.setMessage("Ingreso");
+            objectResponse.setObject(lista);
+            objectResponse.setFailure(0);
+            return objectResponse;
+        } else {
+            objectResponse.setFailure(1);
+            objectResponse.setMessage("error: no hay registros");
+            return objectResponse;
+        }
+
+}
 }
